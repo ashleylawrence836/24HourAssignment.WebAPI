@@ -57,37 +57,5 @@ namespace _24HrAssn.Services
                 return query.ToArray();
             }
         }
-
-
-        public PostDetail GetPostByID(int postId)
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var post = context.Posts.Single
-                    (p => p.PostId == postId);
-
-                PostDetail thePost = new PostDetail
-                {
-                    PostId = post.PostId,
-                    Title = post.Title,
-                    Text = post.Text,
-                    Author = post.Author,
-                    CreatedUtc = post.CreatedUtc
-                };
-
-                foreach (Comment comment in post.Comments)
-                {
-                    thePost.Comments.Add(new CommentDetail
-                    {
-                        CommentId = comment.CommentId,
-                        Text = comment.Text,
-                        Author = comment.Author,
-                        CreatedUtc = comment.CreatedUtc,
-                    });
-                }
-
-                return thePost;
-            }
-        }
     }
 }

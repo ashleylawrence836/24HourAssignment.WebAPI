@@ -59,29 +59,5 @@ namespace _24HrAssn.Services
 
             }
         }
-
-        public List<CommentDetail> GetCommentsByPostID(int postId)
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var post = context.Posts.Single
-                    (p => p.PostId == postId);
-
-                List<CommentDetail> comments = new List<CommentDetail>();
-
-                foreach (Comment comment in post.Comments)
-                {
-                    comments.Add(new CommentDetail
-                    {
-                        CommentId = comment.CommentId,
-                        Text = comment.Text,
-                        Author = comment.Author,
-                        CreatedUtc = comment.CreatedUtc,
-                    });
-                }
-
-                return comments;
-            }
-        }
     }
 }

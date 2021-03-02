@@ -57,27 +57,5 @@ namespace _24HrAssn.Services
                 return query.ToArray();
             }
         }
-
-        public List<ReplyDetail> GetReplyByCommentPostId(int commentId, int postId)
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                var comment = context.Comments.Single
-                    (c => c.CommentId == commentId && c.PostId == postId);
-                List<ReplyDetail> replies = new List<ReplyDetail>();
-                
-                foreach (Reply reply in comment.Replies)
-                {
-                    replies.Add(new ReplyDetail()
-                    {
-                        Author = reply.Author,
-                        Text = reply.Text,
-                        CommentId = reply.CommentId
-                    });
-                }
-
-                return replies;
-            }
-        }
     }
 }
