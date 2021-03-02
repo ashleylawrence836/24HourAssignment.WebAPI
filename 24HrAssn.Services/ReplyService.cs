@@ -29,7 +29,7 @@ namespace _24HrAssn.Services
                 };
             using (var context = new ApplicationDbContext())
             {
-                context.Comments.Add(entity);
+                context.Replies.Add(entity);
                 return context.SaveChanges() == 1;
             }
         }

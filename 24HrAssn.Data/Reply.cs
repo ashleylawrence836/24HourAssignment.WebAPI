@@ -12,7 +12,8 @@ namespace _24HrAssn.Data
     public class Reply : Comment
     {
         [Required]
-        [ForeignKey(nameof(CommentId))]
-        public virtual CommentDetail Comment { get; set; }
+        [ForeignKey(nameof(Comment))]
+        public new int CommentId { get; set; }
+        public virtual Comment Comment { get; set; }
     }
 }

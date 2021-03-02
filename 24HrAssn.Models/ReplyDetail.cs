@@ -10,9 +10,8 @@ namespace _24HrAssn.Models
 {
     public class ReplyDetail
     {
-        public int NoteId { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
+        public int CommentId { get; set; }
+        public string Text { get; set; }
 
         [Display(Name = "Reply By")]
         public Guid Author { get; set; }
@@ -23,7 +22,6 @@ namespace _24HrAssn.Models
         [Display(Name = "Edited")]
         public DateTimeOffset? EditUtc { get; set; }
 
-        public int CommentId { get; set; }
         [ForeignKey(nameof(CommentId))]
         public virtual CommentDetail Comment { get; set; }
     }
