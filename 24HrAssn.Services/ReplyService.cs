@@ -26,6 +26,7 @@ namespace _24HrAssn.Services
                 {
                     Author = _userId,
                     Text = model.Text,
+                    CommentId = model.CommentId
                 };
             using (var context = new ApplicationDbContext())
             {
