@@ -12,9 +12,6 @@ namespace _24HrAssn.Models
         [Required]
         [MinLength(1, ErrorMessage = "Nothing to reply!")]
         [MaxLength(2000, ErrorMessage = "The amount of characters in this field is astronomical.")]
-        public string Title { get; set; }
-
-        [MaxLength(2000)]
         public string Text { get; set; }
     }
 }
