@@ -9,51 +9,55 @@ using System.Threading.Tasks;
 
 namespace _24HrAssn.Services
 {
-        public class CommentService
+    public class CommentService
+    {
+        private readonly Guid _userId;
+
+        public CommentService(Guid userId)
         {
-            private readonly Guid _userId;
+            _userId = userId;
+        }
 
-            public CommentService(Guid userId)
+
+        public bool CreateComment(CommentCreate model)
+        {
+            var entity =
+                new Comment()
+                {
+                    PostId = model.PostId,
+                    Author = _userId,
+                    Text = model.Text,
+                    CreatedUtc = DateTimeOffset.Now
+                };
+            using (var context = new ApplicationDbContext())
             {
-                _userId = userId;
+                Post post = context.Posts.FindAsync(model.PostId).Result;
+                post.Comments.Add(entity);
+                context.Comments.Add(entity);
+                return context.SaveChanges() == 1;
             }
 
+        }
 
-            public bool CreateComment(CommentCreate model)
+        public IEnumerable<CommentListItem> GetComments()
+        {
+            using (var context = new ApplicationDbContext())
             {
-                var entity =
-                    new Comment()
-                    {
-                        Author = _userId,
-                        Text = model.Text,
-                    };
-                using (var context = new ApplicationDbContext())
-                {
-                    context.Comments.Add(entity);
-                    return context.SaveChanges() == 1;
-                }
+                var query =
+                    context
+                    .Comments
+                    .Where(e => e.Author == _userId)
+                    .Select(
+                        e =>
+                            new CommentListItem
+                            {
+                                PostId = e.PostId,
+                                Text = e.Text
+                            });
 
-            }
+                return query.ToArray();
 
-            public IEnumerable<CommentListItem> GetComments()
-            {
-                using (var context = new ApplicationDbContext())
-                {
-                    var query =
-                        context
-                        .Comments
-                        .Where(e => e.Author == _userId)
-                        .Select(
-                            e =>
-                                new CommentListItem
-                                {
-                                    PostId = e.PostId,
-                                    Text = e.Text
-                                });
-
-                    return query.ToArray();
-
-                }
             }
         }
     }
+}

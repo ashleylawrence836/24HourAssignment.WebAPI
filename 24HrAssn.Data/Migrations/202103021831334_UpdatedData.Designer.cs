@@ -7,13 +7,13 @@ namespace _24HrAssn.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class UpdatedReply : IMigrationMetadata
+    public sealed partial class UpdatedData : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedReply));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedData));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103021456204_UpdatedReply"; }
+            get { return "202103021831334_UpdatedData"; }
         }
         
         string IMigrationMetadata.Source

@@ -50,12 +50,45 @@ namespace _24HrAssn.Services
                             {
                                 PostId = e.PostId,
                                 Title = e.Title,
-                                Text = e.Text
+                                Text = e.Text,
                             });
 
                 return query.ToArray();
             }
         }
-        
+
+
+        public PostDetail GetPostByID(int postId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var post = context.Posts.Single
+                    (p => p.PostId == postId
+                    && p.Author == _userId);
+
+                PostDetail thePost = new PostDetail
+                {
+                    PostId = post.PostId,
+                    Title = post.Title,
+                    Text = post.Text,
+                    Author = post.Author,
+                    CreatedUtc = post.CreatedUtc
+                };
+
+                foreach (Comment comment in post.Comments)
+                {
+                    thePost.Comments.Add(new CommentDetail
+                    {
+                        CommentId = comment.CommentId,
+                        Text = comment.Text,
+                        Author = comment.Author,
+                        CreatedUtc = comment.CreatedUtc,
+                        EditUtc = comment.EditedUtc,
+                    });
+                }
+
+                return thePost;
+            }
+        }
     }
 }

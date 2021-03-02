@@ -20,8 +20,7 @@ namespace _24HrAssn.Data
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
         public DateTimeOffset EditUtc { get; set; }
-        [Required]
-        public List<Comment> Comments { get; set; }
+        public virtual List<Comment> Comments { get; set; } = new List<Comment>();
 
     }
 }
