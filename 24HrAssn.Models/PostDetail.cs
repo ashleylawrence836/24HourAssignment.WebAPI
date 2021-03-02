@@ -21,5 +21,7 @@ namespace _24HrAssn.Models
 
         [Display(Name = "Edited")]
         public DateTimeOffset? EditUtc { get; set; }
+
+        public List<CommentDetail> Comments { get; set; }
     }
 }

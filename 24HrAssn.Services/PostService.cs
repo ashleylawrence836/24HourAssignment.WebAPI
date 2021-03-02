@@ -34,7 +34,6 @@ namespace _24HrAssn.Services
                 context.Posts.Add(entity);
                 return context.SaveChanges() == 1;
             }
-
         }
 
         public IEnumerable<PostListItem> GetPosts()
