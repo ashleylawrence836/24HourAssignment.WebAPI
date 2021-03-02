@@ -10,6 +10,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "_24HourAssignment.WebAPI.Data.ApplicationDbContext";
         }
 
         protected override void Seed(_24HourAssignment.WebAPI.Data.ApplicationDbContext context)

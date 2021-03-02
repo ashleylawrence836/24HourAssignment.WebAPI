@@ -16,8 +16,11 @@ namespace _24HrAssn.Data
         public string Text { get; set; }
         [Required]
         public Guid Author { get; set; }
-        [Required]
-        public List<Reply> Replies { get; set; }
+
+        public DateTimeOffset CreatedUtc { get; set; }
+        public DateTimeOffset EditedUtc { get; set; }
+
+        public virtual List<Reply> Replies { get; set; } = new List<Reply>();
         [Required]
         public int PostId { get; set; }
         [ForeignKey(nameof(PostId))]

@@ -71,6 +71,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\24HrAssn.Data\24HrAssn.Data.csproj">
+      <Project>{4d43781e-7adc-4e69-9177-5a93e4c149a1}</Project>
+      <Name>24HrAssn.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
