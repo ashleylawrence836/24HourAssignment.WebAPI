@@ -27,6 +27,18 @@ namespace _24HourAssignment.WebAPI.Controllers
             return Ok(posts);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetPostById(int id)
+        {
+            PostService postService = CreatePostService();
+            var post = postService.GetPostByID(id);
+            if (post == default)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
+
         public IHttpActionResult Post(PostCreate post)
         {
             if (!ModelState.IsValid)

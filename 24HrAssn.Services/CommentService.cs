@@ -31,9 +31,9 @@ namespace _24HrAssn.Services
                 };
             using (var context = new ApplicationDbContext())
             {
+                context.Comments.Add(entity);
                 Post post = context.Posts.FindAsync(model.PostId).Result;
                 post.Comments.Add(entity);
-                context.Comments.Add(entity);
                 return context.SaveChanges() == 1;
             }
 
@@ -57,6 +57,30 @@ namespace _24HrAssn.Services
 
                 return query.ToArray();
 
+            }
+        }
+
+        public List<CommentDetail> GetCommentsByPostID(int postId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var post = context.Posts.Single
+                    (p => p.PostId == postId);
+
+                List<CommentDetail> comments = new List<CommentDetail>();
+
+                foreach (Comment comment in post.Comments)
+                {
+                    comments.Add(new CommentDetail
+                    {
+                        CommentId = comment.CommentId,
+                        Text = comment.Text,
+                        Author = comment.Author,
+                        CreatedUtc = comment.CreatedUtc,
+                    });
+                }
+
+                return comments;
             }
         }
     }

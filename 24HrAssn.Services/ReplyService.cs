@@ -24,13 +24,38 @@ namespace _24HrAssn.Services
             var entity =
                 new Reply()
                 {
+                    CommentId = model.CommentId,
                     Author = _userId,
                     Text = model.Text,
                 };
             using (var context = new ApplicationDbContext())
             {
+                Comment comment = context.Comments.FindAsync(model.CommentId).Result;
+                comment.Replies.Add(entity);
                 context.Replies.Add(entity);
                 return context.SaveChanges() == 1;
+            }
+        }
+
+        public List<ReplyDetail> GetReplyByCommentPostId(int commentId, int postId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var comment = context.Comments.Single
+                    (c => c.CommentId == commentId && c.PostId == postId);
+                List<ReplyDetail> replies = new List<ReplyDetail>();
+                
+                foreach (Reply reply in comment.Replies)
+                {
+                    replies.Add(new ReplyDetail()
+                    {
+                        Author = reply.Author,
+                        Text = reply.Text,
+                        CommentId = reply.CommentId
+                    });
+                }
+
+                return replies;
             }
         }
     }

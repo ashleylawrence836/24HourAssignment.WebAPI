@@ -63,8 +63,7 @@ namespace _24HrAssn.Services
             using (var context = new ApplicationDbContext())
             {
                 var post = context.Posts.Single
-                    (p => p.PostId == postId
-                    && p.Author == _userId);
+                    (p => p.PostId == postId);
 
                 PostDetail thePost = new PostDetail
                 {
@@ -83,7 +82,6 @@ namespace _24HrAssn.Services
                         Text = comment.Text,
                         Author = comment.Author,
                         CreatedUtc = comment.CreatedUtc,
-                        EditUtc = comment.EditedUtc,
                     });
                 }
 

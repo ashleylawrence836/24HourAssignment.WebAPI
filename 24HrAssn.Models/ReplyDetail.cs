@@ -15,12 +15,6 @@ namespace _24HrAssn.Models
         [Display(Name = "Reply By")]
         public Guid Author { get; set; }
 
-        [Display(Name = "Reply")]
-        public DateTimeOffset CreatedUtc { get; set; }
-
-        [Display(Name = "Edited")]
-        public DateTimeOffset? EditUtc { get; set; }
-
         [ForeignKey(nameof(CommentId))]
         public int CommentId { get; set; }
         public virtual CommentDetail Comment { get; set; }

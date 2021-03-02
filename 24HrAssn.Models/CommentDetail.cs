@@ -18,9 +18,6 @@ namespace _24HrAssn.Models
         [Display(Name = "Commented On")]
         public DateTimeOffset CreatedUtc { get; set; }
 
-        [Display(Name = "Edited")]
-        public DateTimeOffset? EditUtc { get; set; }
-
         public List<ReplyDetail> Replies { get; set; } = new List<ReplyDetail>();
     }
 }

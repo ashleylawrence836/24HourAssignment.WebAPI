@@ -39,5 +39,18 @@ namespace _24HourAssignment.WebAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public IHttpActionResult GetCommentsByPostId(int postId)
+        {
+            CommentService commentService = CreateCommentService();
+            List<CommentDetail> comments = commentService.GetCommentsByPostID(postId);
+            if (comments.Count == 0)
+            {
+                return BadRequest("There aren't any comments yet!");
+            }
+
+            return Ok(comments);
+        }
     }
 }
