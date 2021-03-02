@@ -5,23 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _24HrAssn.Data
+namespace _24HrAssn.Models
 {
-    public class Post
+    public class PostDetail
     {
-        [Key]
         public int PostId { get; set; }
-        [Required]
         public string Title { get; set; }
-        [Required]
-        public Guid Author { get; set; }
-        [Required]
         public string Text { get; set; }
-        [Required]
-        public DateTimeOffset CreatedUtc { get; set; }
-        public DateTimeOffset EditUtc { get; set; }
-        [Required]
-        public List<Comment> Comments { get; set; }
 
+        [Display(Name = "Posted By")]
+        public Guid Author { get; set; }
+
+        [Display(Name = "Status Update")]
+        public DateTimeOffset CreatedUtc { get; set; }
+
+        [Display(Name = "Edited")]
+        public DateTimeOffset? EditUtc { get; set; }
     }
 }
