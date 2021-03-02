@@ -33,5 +33,26 @@ namespace _24HrAssn.Services
                 return context.SaveChanges() == 1;
             }
         }
+
+
+        public IEnumerable<ReplyListItem> GetReplies()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var query =
+                    context
+                    .Replies
+                    .Where(e => e.Author == _userId)
+                    .Select(
+                        e =>
+                            new ReplyListItem
+                            {
+                                CommentId = e.CommentId,
+                                Text = e.Text
+                            });
+
+                return query.ToArray();
+            }
+        }
     }
 }
