@@ -1,5 +1,6 @@
 ﻿using _24HourAssignment.WebAPI.Data;
 using _24HrAssn.Data;
+using _24HrAssn.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace _24HrAssn.Services
                 {
                     Author = _userId,
                     Title = model.Title,
-                    Text = model.Content,
+                    Text = model.Text,
                     CreatedUtc = DateTimeOffset.Now
                 };
             using (var context = new ApplicationDbContext())
@@ -50,7 +51,7 @@ namespace _24HrAssn.Services
                             {
                                 PostId = e.PostId,
                                 Title = e.Title,
-                                CreatedUtc = e.CreatedUtc
+                                Text = e.Text
                             });
 
                 return query.ToArray();
