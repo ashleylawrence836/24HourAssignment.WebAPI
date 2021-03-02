@@ -27,7 +27,8 @@ namespace _24HrAssn.Services
                     Author = _userId,
                     Title = model.Title,
                     Text = model.Text,
-                    CreatedUtc = DateTimeOffset.Now
+                    CreatedUtc = DateTimeOffset.Now,
+                    Comments = new List<Comment>()
                 };
             using (var context = new ApplicationDbContext())
             {

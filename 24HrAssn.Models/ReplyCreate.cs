@@ -15,5 +15,6 @@ namespace _24HrAssn.Models
         [MinLength(1, ErrorMessage = "Nothing to reply!")]
         [MaxLength(2000, ErrorMessage = "The amount of characters in this field is astronomical.")]
         public string Text { get; set; }
+        public int CommentId { get; set; }
     }
 }

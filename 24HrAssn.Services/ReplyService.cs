@@ -37,6 +37,27 @@ namespace _24HrAssn.Services
             }
         }
 
+
+        public IEnumerable<ReplyListItem> GetReplies()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var query =
+                    context
+                    .Replies
+                    .Where(e => e.Author == _userId)
+                    .Select(
+                        e =>
+                            new ReplyListItem
+                            {
+                                CommentId = e.CommentId,
+                                Text = e.Text
+                            });
+
+                return query.ToArray();
+            }
+        }
+
         public List<ReplyDetail> GetReplyByCommentPostId(int commentId, int postId)
         {
             using (var context = new ApplicationDbContext())
