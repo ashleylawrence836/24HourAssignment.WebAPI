@@ -24,11 +24,15 @@ namespace _24HrAssn.Services
             var entity =
                 new Comment()
                 {
+                    PostId = model.PostId,
                     Author = _userId,
                     Text = model.Text,
+                    CreatedUtc = DateTimeOffset.Now
                 };
             using (var context = new ApplicationDbContext())
             {
+                Post post = context.Posts.FindAsync(model.PostId).Result;
+                post.Comments.Add(entity);
                 context.Comments.Add(entity);
                 return context.SaveChanges() == 1;
             }

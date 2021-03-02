@@ -1,4 +1,4 @@
-﻿using _24HrAssn.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,10 +9,18 @@ using System.Threading.Tasks;
 
 namespace _24HrAssn.Data
 {
-    public class Reply : Comment
+    public class Reply
     {
+        [Key]
+        public int ReplyId { get; set; }
         [Required]
-        [ForeignKey(nameof(CommentId))]
-        public virtual CommentDetail Comment { get; set; }
+        public string Text { get; set; }
+        [Required]
+        public Guid Author { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Comment))]
+        public int CommentId { get; set; }
+        public virtual Comment Comment { get; set; }
     }
 }

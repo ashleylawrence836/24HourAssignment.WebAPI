@@ -15,7 +15,5 @@ namespace _24HrAssn.Models
 
         [MaxLength(2000, ErrorMessage = "That's way too long buddy!")]
         public string Text { get; set; }
-
-
     }
 }

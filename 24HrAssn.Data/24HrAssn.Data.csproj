@@ -89,6 +89,15 @@
   <ItemGroup>
     <Compile Include="Comment.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202103021701408_InitialCreate.cs" />
+    <Compile Include="Migrations\202103021701408_InitialCreate.designer.cs">
+      <DependentUpon>202103021701408_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103021831334_UpdatedData.cs" />
+    <Compile Include="Migrations\202103021831334_UpdatedData.designer.cs">
+      <DependentUpon>202103021831334_UpdatedData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reply.cs" />
@@ -98,10 +107,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\24HrAssn.Models\24HrAssn.Models.csproj">
-      <Project>{fe9c975b-f148-427f-8482-41007139e871}</Project>
-      <Name>24HrAssn.Models</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\202103021701408_InitialCreate.resx">
+      <DependentUpon>202103021701408_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103021831334_UpdatedData.resx">
+      <DependentUpon>202103021831334_UpdatedData.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -9,6 +9,7 @@ namespace _24HrAssn.Models
 {
     public class CommentDetail
     {
+        public int CommentId { get; set; }
         public string Text { get; set; }
 
         [Display(Name = "Comment By")]
@@ -20,6 +21,6 @@ namespace _24HrAssn.Models
         [Display(Name = "Edited")]
         public DateTimeOffset? EditUtc { get; set; }
 
-        public List<ReplyDetail> Replies { get; set; }
+        public List<ReplyDetail> Replies { get; set; } = new List<ReplyDetail>();
     }
 }
