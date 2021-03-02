@@ -11,30 +11,30 @@ using System.Web.Http;
 namespace _24HourAssignment.WebAPI.Controllers
 {
     [Authorize]
-    public class CommentController : ApiController
+    public class PostController : ApiController
     {
-        private CommentService CreateCommentService()
+        private PostService CreatePostService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var commentService = new CommentService(userId);
-            return commentService;
+            var postService = new PostService(userId);
+            return postService;
         }
 
         public IHttpActionResult Get()
         {
-            CommentService commentService = CreateCommentService();
-            var comments = commentService.GetComments();
-            return Ok(comments);
+            PostService postService = CreatePostService();
+            var posts = postService.GetPosts();
+            return Ok(posts);
         }
 
-        public IHttpActionResult Comment(CommentCreate comment)
+        public IHttpActionResult Post(PostCreate post)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateCommentService();
+            var service = CreatePostService();
 
-            if (!service.CreateComment(comment))
+            if (!service.CreatePost(post))
                 return InternalServerError();
 
             return Ok();

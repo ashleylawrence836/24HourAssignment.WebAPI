@@ -1,5 +1,6 @@
 ﻿using _24HourAssignment.WebAPI.Data;
 using _24HrAssn.Data;
+using _24HrAssn.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,29 +11,47 @@ namespace _24HrAssn.Services
 {
     public class CommentService
     {
-        public class PostService
-        {
-            private readonly Guid _userId;
+        private readonly Guid _userId;
 
-            public PostService(Guid userId)
+        public CommentService(Guid userId)
+        {
+            _userId = userId;
+        }
+
+
+        public bool CreateComment(CommentCreate model)
+        {
+            var entity =
+                new Comment()
+                {
+                    Author = _userId,
+                    Text = model.Text,
+                };
+            using (var context = new ApplicationDbContext())
             {
-                _userId = userId;
+                context.Comments.Add(entity);
+                return context.SaveChanges() == 1;
             }
 
+        }
 
-            public bool CreatePost(CommentCreate model)
+        public IEnumerable<CommentListItem> GetComments()
+        {
+            using (var context = new ApplicationDbContext())
             {
-                var entity =
-                    new Comment()
-                    {
-                        Author = _userId,
-                        Text = model.Content,
-                    };
-                using (var context = new ApplicationDbContext())
-                {
-                    context.Comments.Add(entity);
-                    return context.SaveChanges() == 1;
-                }
+                var query =
+                    context
+                    .Comments
+                    .Where(e => e.Author == _userId)
+                    .Select(
+                        e =>
+                            new CommentListItem
+                            {
+                                PostId = e.PostId,
+                                Text = e.Text
+                            });
+
+                return query.ToArray();
 
             }
         }
