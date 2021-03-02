@@ -9,6 +9,7 @@ namespace _24HrAssn.Models
 {
     public class CommentDetail
     {
+        public int CommentId { get; set; }
         public string Text { get; set; }
 
         [Display(Name = "Comment By")]

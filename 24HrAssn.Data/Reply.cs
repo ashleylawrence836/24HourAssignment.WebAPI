@@ -9,11 +9,18 @@ using System.Threading.Tasks;
 
 namespace _24HrAssn.Data
 {
-    public class Reply : Comment
+    public class Reply
     {
+        [Key]
+        public int ReplyId { get; set; }
+        [Required]
+        public string Text { get; set; }
+        [Required]
+        public Guid Author { get; set; }
+
         [Required]
         [ForeignKey(nameof(Comment))]
-        public new int CommentId { get; set; }
+        public int CommentId { get; set; }
         public virtual Comment Comment { get; set; }
     }
 }
