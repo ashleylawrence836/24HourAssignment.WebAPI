@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,5 +22,9 @@ namespace _24HrAssn.Models
 
         [Display(Name = "Edited")]
         public DateTimeOffset? EditUtc { get; set; }
+
+        public int CommentId { get; set; }
+        [ForeignKey(nameof(CommentId))]
+        public virtual CommentDetail Comment { get; set; }
     }
 }

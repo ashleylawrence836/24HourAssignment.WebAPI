@@ -14,10 +14,12 @@ namespace _24HrAssn.Models
         [Display(Name = "Comment By")]
         public Guid Author { get; set; }
 
-        [Display(Name = "Comment")]
+        [Display(Name = "Commented On")]
         public DateTimeOffset CreatedUtc { get; set; }
 
         [Display(Name = "Edited")]
         public DateTimeOffset? EditUtc { get; set; }
+
+        public List<ReplyDetail> Replies { get; set; }
     }
 }
