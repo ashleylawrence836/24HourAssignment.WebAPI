@@ -24,8 +24,10 @@ namespace _24HrAssn.Services
                 var entity =
                     new Comment()
                     {
+                        PostId = model.PostId,
                         Author = _userId,
                         Text = model.Text,
+                        Replies = new List<Reply>()
                     };
                 using (var context = new ApplicationDbContext())
                 {

@@ -12,5 +12,7 @@ namespace _24HrAssn.Models
         [Required]
         [MaxLength(2000, ErrorMessage = "Sorry. I can't allow that, user")]
         public string Text { get; set; }
+        [Required]
+        public int PostId { get; set; }
     }
 }
